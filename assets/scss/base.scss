@@ -1,3 +1,29 @@
 @charset "UTF-8";
 
 @import "fonts", "reset";
+
+#header {
+}
+
+#intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#footer {
+  background: var(--black200);
+  position: sticky;
+  bottom: 0;
+  color: var(--white);
+  padding: 34px 30px;
+  p {
+    font: {
+      size: 11px;
+      weight: 400;
+    }
+    text-transform: uppercase;
+  }
+}
