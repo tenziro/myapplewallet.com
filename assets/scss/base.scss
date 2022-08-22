@@ -6,11 +6,43 @@
 }
 
 #intro {
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+  background: var(--bg-grey1);
+  padding: 0 40px;
+  .inner {
+    margin: 0 auto;
+    flex: 1;
+    max-width: 1200px;
+    h2 {
+      margin-bottom: 20px;
+      font: {
+        size: 14px;
+        weight: 900;
+      }
+    }
+    h3 {
+      .ani-text {
+        display: block;
+        line-height: 1.4em;
+        font: {
+          size: 2em;
+          weight: 700;
+        }
+      }
+      em {
+        background: linear-gradient(to right, #f5a1ff, #5f58d3);
+        font-style: normal;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font: {
+          size: 1em;
+          weight: 700;
+        }
+      }
+    }
+  }
 }
 
 #footer {
@@ -25,5 +57,111 @@
       weight: 400;
     }
     text-transform: uppercase;
+  }
+}
+
+#menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2em;
+  .main-menu {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    li {
+      animation-name: fadeinUp;
+      animation-fill-mode: both;
+      animation-duration: 1s;
+      a {
+        text-decoration: none;
+        color: var(--black200);
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 0;
+          top: 100%;
+          height: 6px;
+          background: #5f58d3;
+          transition: width 0.38s ease-in-out;
+        }
+        &:hover {
+          &:before {
+            width: 100%;
+          }
+        }
+        font: {
+          size: 3em;
+          weight: 800;
+        }
+      }
+      + li {
+        margin-top: 1.2em;
+      }
+      &:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.9s;
+      }
+      &:nth-child(4) {
+        animation-delay: 1.1s;
+      }
+      &:nth-child(5) {
+        animation-delay: 1.3s;
+      }
+    }
+  }
+  .sub-menu {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    animation-name: fadeinUp;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    margin-top: 5em;
+    li {
+      a {
+        text-decoration: none;
+        color: var(--black900);
+        transition: color 0.38s;
+        font: {
+          size: 1.6em;
+          weight: 800;
+        }
+        &:hover {
+          color: var(--black300);
+        }
+      }
+      + li {
+        margin-left: 2em;
+      }
+    }
+  }
+}
+
+@keyframes fadeinUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-2.2em);
   }
 }
