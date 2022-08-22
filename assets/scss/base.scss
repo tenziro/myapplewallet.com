@@ -67,22 +67,33 @@
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: var(--white);
+  background: #0267f5;
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 2em;
-  .main-menu {
+  .main-menu,
+  .sub-menu,
+  .copyright {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+  }
+  .main-menu li,
+  .sub-menu,
+  .copyright {
+    animation-name: fadeinUp;
+    animation-fill-mode: both;
+    animation-duration: 0.8s;
+  }
+  .main-menu {
     li {
       animation-name: fadeinUp;
       animation-fill-mode: both;
       animation-duration: 1s;
       a {
         text-decoration: none;
-        color: var(--black200);
+        color: var(--white);
         position: relative;
         &:before {
           content: "";
@@ -91,7 +102,7 @@
           width: 0;
           top: 100%;
           height: 6px;
-          background: #5f58d3;
+          background: var(--white);
           transition: width 0.38s ease-in-out;
         }
         &:hover {
@@ -125,32 +136,32 @@
     }
   }
   .sub-menu {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
     display: flex;
     align-items: center;
-    animation-name: fadeinUp;
-    animation-fill-mode: both;
-    animation-duration: 1s;
     animation-delay: 1.5s;
     margin-top: 5em;
     li {
       a {
         text-decoration: none;
-        color: var(--black900);
+        color: var(--white);
         transition: color 0.38s;
         font: {
           size: 1.6em;
           weight: 800;
         }
-        &:hover {
-          color: var(--black300);
-        }
       }
       + li {
         margin-left: 2em;
       }
+    }
+  }
+  .copyright {
+    animation-delay: 1.7s;
+    margin-top: 2em;
+    color: var(--white);
+    font: {
+      size: 1em;
+      weight: 800;
     }
   }
 }
