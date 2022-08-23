@@ -1,19 +1,23 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
 :root {
   --white: #fff;
+  --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
   --black000: #000;
   --black200: #222;
   --black300: #333;
   --black600: #666;
+  --black700: #777;
+  --black800: #888;
   --black900: #999;
   --gray100: #f8f8f8;
   --gray200: #eaeaea;
   --gray300: #ccc;
   --bg-grey1: #f8f8f8;
   --bg-grey2: #eaeaea;
+  --point100: #5f58d3;
+  --point200: #f5a1ff;
   --transparent: transparent;
 }
 

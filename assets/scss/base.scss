@@ -4,48 +4,17 @@
 
 // Layout **********
 #header {
-}
-
-#intro {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  background: var(--bg-grey1);
-  padding: 0 40px;
-  .inner {
-    margin: 0 auto;
-    flex: 1;
-    max-width: 1200px;
-    h2 {
-      margin-bottom: 20px;
-      font: {
-        size: 14px;
-        weight: 900;
-      }
-    }
-    h3 {
-      .ani-text {
-        display: block;
-        line-height: 1.4em;
-        font: {
-          size: 2em;
-          weight: 700;
-        }
-      }
-      em {
-        background: linear-gradient(to right, #f5a1ff, #5f58d3);
-        font-style: normal;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font: {
-          size: 1em;
-          weight: 700;
-        }
-      }
-    }
+  color: var(--white);
+  padding: 34px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.1s;
+  &.blur {
+    background: rgba(var(--white-rgb), 0.5);
+    backdrop-filter: blur(5px);
   }
 }
-
 #footer {
   background: var(--black200);
   color: var(--white);
@@ -58,7 +27,6 @@
     text-transform: uppercase;
   }
 }
-
 #menu {
   position: fixed;
   left: 0;
@@ -206,6 +174,152 @@
   }
 }
 
+// Contents **********
+#intro {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--bg-grey2);
+  padding: 0 40px;
+  .inner {
+    margin: 0 auto;
+    flex: 1;
+    max-width: 1200px;
+    h2 {
+      margin-bottom: 20px;
+      font: {
+        size: 14px;
+        weight: 900;
+      }
+    }
+    h3 {
+      .ani-text {
+        display: block;
+        line-height: 1.4em;
+        font: {
+          size: 2em;
+          weight: 700;
+        }
+      }
+      em {
+        background: linear-gradient(to right, var(--point200), var(--point100));
+        font-style: normal;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font: {
+          size: 1em;
+          weight: 700;
+        }
+      }
+    }
+  }
+}
+
+#review {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .inner {
+    margin: 0 auto 3em;
+    width: 100%;
+    max-width: 1200px;
+    h2 {
+      margin-bottom: 20px;
+      font: {
+        size: 14px;
+        weight: 900;
+      }
+    }
+    h3 {
+      .ani-text {
+        display: block;
+        line-height: 1.4em;
+        font: {
+          size: 2em;
+          weight: 700;
+        }
+      }
+      em {
+        background: linear-gradient(to right, var(--point200), var(--point100));
+        font-style: normal;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font: {
+          size: 1em;
+          weight: 700;
+        }
+      }
+    }
+  }
+  .review-contents {
+    width: 100%;
+  }
+  .review-item {
+    border-radius: 10px;
+    background: var(--gray100);
+    padding: 2em;
+    .quote {
+      position: relative;
+      line-height: 1.5em;
+      font: {
+        size: 1.2em;
+        weight: 700;
+      }
+      &:before,
+      &:after {
+        content: '"';
+      }
+      &:before {
+        margin-right: 3px;
+      }
+      &:after {
+        margin-left: 3px;
+      }
+    }
+    .user {
+      margin-top: 1.2em;
+      position: relative;
+      display: flex;
+      align-items: center;
+      .user-photo {
+        width: 40px;
+        height: 40px;
+        background: var(--white);
+        border-radius: 50%;
+        flex: 0 0 40px;
+        margin-right: 0.625em;
+      }
+      .user-information {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        li {
+          + li {
+            margin-top: 0.125em;
+          }
+          &:nth-child(1) {
+            color: var(--black900);
+            font: {
+              size: 0.688em;
+              weight: 500;
+            }
+          }
+          &:nth-child(2) {
+            a {
+              color: var(--black800);
+              font: {
+                size: 0.813em;
+                weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 // Animation **********
 @keyframes fadeinUp {
   0% {
@@ -229,3 +343,12 @@
 }
 
 // Media Query **********
+
+// Vendor css
+#review {
+  .review-contents {
+    .owl-item {
+      max-width: 420px;
+    }
+  }
+}
