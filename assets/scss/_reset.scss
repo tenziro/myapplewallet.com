@@ -105,7 +105,9 @@ summary {
   display: block;
 }
 
-html {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -133,6 +135,11 @@ html {
 *:after,
 *:before {
   box-sizing: border-box;
+}
+
+button {
+  background: var(--transparent);
+  border: 0 none;
 }
 
 embed,

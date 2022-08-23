@@ -2,6 +2,7 @@
 
 @import "fonts", "reset";
 
+// Layout **********
 #header {
 }
 
@@ -47,8 +48,6 @@
 
 #footer {
   background: var(--black200);
-  position: sticky;
-  bottom: 0;
   color: var(--white);
   padding: 34px 30px;
   p {
@@ -68,10 +67,60 @@
   bottom: 0;
   z-index: 100;
   background: #0267f5;
-  display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 2em;
+  display: none;
+  &.actived {
+    display: flex;
+  }
+  .btn-menu-close {
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    width: 48px;
+    height: 48px;
+    text-indent: -9999em;
+    border: {
+      radius: 50%;
+      style: solid;
+      width: 2px;
+      color: var(--transparent);
+    }
+    transition: border-color 0.4s;
+    animation-name: fadeinUp;
+    animation-fill-mode: both;
+    animation-duration: 0.8s;
+    animation-delay: 0.3s;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      transform-origin: center;
+      width: 60%;
+      height: 3px;
+      left: 50%;
+      top: 50%;
+      border-radius: 2px;
+      background: var(--white);
+      transition: transform 0.3s;
+    }
+    &:before {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &:hover {
+      border-color: var(--white);
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:after {
+        transform: translate(-50%, -50%) rotate(135deg);
+      }
+    }
+  }
   .main-menu,
   .sub-menu,
   .copyright {
@@ -82,7 +131,7 @@
   .main-menu li,
   .sub-menu,
   .copyright {
-    animation-name: fadeinUp;
+    animation-name: fadeinDown;
     animation-fill-mode: both;
     animation-duration: 0.8s;
   }
@@ -166,13 +215,26 @@
   }
 }
 
+// Animation **********
 @keyframes fadeinUp {
   0% {
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(2.2em);
   }
   100% {
     opacity: 1;
-    transform: translateY(-2.2em);
+    transform: translateY(0);
   }
 }
+@keyframes fadeinDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2.2em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Media Query **********
