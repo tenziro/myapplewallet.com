@@ -18,6 +18,9 @@
   --bg-grey2: #eaeaea;
   --point100: #5f58d3;
   --point200: #f5a1ff;
+  --blue100: #47b5ff;
+  --blue200: #1363df;
+  --blue300: #06283d;
   --transparent: transparent;
 }
 
@@ -283,4 +286,8 @@ input[type="button"] {
 
 .underline {
   text-underline-offset: 4px;
+}
+
+.disabled-scroll {
+  overflow: hidden;
 }

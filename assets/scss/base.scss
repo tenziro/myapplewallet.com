@@ -11,9 +11,17 @@
   top: 0;
   z-index: 100;
   transition: background 0.1s;
+  .inner {
+    margin: 0 auto;
+  }
   &.blur {
     background: rgba(var(--white-rgb), 0.5);
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--white);
+  }
+  .btn-menu {
+    color: var(--black);
   }
 }
 // Footer **********
@@ -56,7 +64,7 @@
         }
       }
       a {
-        color: var(--black);
+        color: #1363df;
       }
     }
     &:nth-child(2) {
@@ -83,6 +91,19 @@
   &.actived {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    .btn-menu-close {
+      animation-name: fadeinUp;
+      animation-fill-mode: both;
+      animation-duration: 0.8s;
+      animation-delay: 1s;
+    }
+    .main-menu li,
+    .sub-menu,
+    .copyright {
+      animation-name: fadeinDown;
+      animation-fill-mode: both;
+      animation-duration: 0.8s;
+    }
   }
   .btn-menu-close {
     position: absolute;
@@ -98,10 +119,6 @@
       color: var(--transparent);
     }
     transition: border-color 0.4s;
-    animation-name: fadeinUp;
-    animation-fill-mode: both;
-    animation-duration: 0.8s;
-    animation-delay: 1.8s;
     &:before,
     &:after {
       content: "";
@@ -137,13 +154,6 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-  }
-  .main-menu li,
-  .sub-menu,
-  .copyright {
-    animation-name: fadeinDown;
-    animation-fill-mode: both;
-    animation-duration: 0.8s;
   }
   .main-menu {
     li {
@@ -205,7 +215,7 @@
       }
       @for $i from 1 to 8 {
         &:nth-child(#{$i}) {
-          animation-delay: (1.8 + $i * 0.2s);
+          animation-delay: (1.2 + $i * 0.2s);
         }
       }
     }
@@ -213,6 +223,7 @@
 }
 
 // Contents **********
+#header,
 #intro,
 #review,
 #press {
@@ -252,7 +263,7 @@
       color: var(--black);
       opacity: 0;
       font: {
-        size: 3em;
+        size: 3.25em;
         weight: 700;
       }
     }
@@ -264,24 +275,25 @@
       width: 0;
       bottom: 0;
       z-index: 1;
+      pointer-events: none;
     }
     &:nth-child(1) {
       &:before {
-        background: #47b5ff;
+        background: var(--blue100);
       }
     }
     &:nth-child(2) {
       &:before {
-        background: #1363df;
+        background: var(--blue200);
       }
     }
     &:nth-child(3) {
       &:before {
-        background: #06283d;
+        background: var(--blue300);
       }
     }
     + .animate-text {
-      margin-top: 20px;
+      margin-top: 1em;
     }
   }
   &.start-animate {
@@ -444,30 +456,17 @@
     display: block;
     width: 60px;
     height: 60px;
-    background-color: var(--transparent);
     z-index: 10000;
-    position: relative;
     transform: translate(-50%, -50%);
-    div {
-      background-color: var(--white);
-      border-radius: 100%;
-      animation-fill-mode: both;
-      position: absolute;
-      left: 0%;
-      top: 0%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      margin: 0;
-      width: 60px;
-      height: 60px;
-      animation: ball-scale-multiple 1s 0s linear infinite;
-      &:nth-child(2) {
-        animation-delay: -0.4s;
-      }
-      &:nth-child(3) {
-        animation-delay: -0.2s;
-      }
+    border-radius: 100%;
+    border: {
+      left: 4px solid var(--grey100);
+      top: 4px solid var(--blue200);
+      right: 4px solid var(--grey100);
+      bottom: 4px solid var(--grey100);
     }
+    animation-fill-mode: both;
+    animation: loading-icon 1s 0s linear infinite;
   }
 
   .page-loading-left,
@@ -475,40 +474,35 @@
     position: fixed;
     left: 0;
     right: 0;
-    background: var(--point100);
-    transition: all 900ms cubic-bezier(0.77, 0, 0.06, 1.005);
+    background: var(--white);
+    transition: all 0.9s cubic-bezier(0.77, 0, 0.06, 1.005);
     transition-delay: 0.4s;
   }
   .page-loading-left {
     top: 0;
-    height: 51%;
+    height: 50%;
   }
   .page-loading-right {
     bottom: 0;
-    height: 51%;
+    height: 50%;
   }
   &.loaded {
     .page-loading-left {
-      transform: translateY(-100%);
+      transform: translateX(100%);
     }
     .page-loading-right {
-      transform: translateY(100%);
+      transform: translateX(-100%);
     }
   }
 }
 
 // Animation
-@keyframes ball-scale-multiple {
-  0% {
-    transform: scale(0);
-    opacity: 0;
+@keyframes loading-icon {
+  from {
+    transform: rotate(0);
   }
-  5% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
+  to {
+    transform: rotate(360deg);
   }
 }
 @keyframes fadeinUp {
