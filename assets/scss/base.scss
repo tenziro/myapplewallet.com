@@ -3,6 +3,7 @@
 @import "fonts", "reset";
 
 // Layout **********
+// Header **********
 #header {
   color: var(--white);
   padding: 34px 30px;
@@ -15,18 +16,55 @@
     backdrop-filter: blur(5px);
   }
 }
+// Footer **********
 #footer {
-  background: var(--black200);
-  color: var(--white);
-  padding: 34px 30px;
-  p {
-    font: {
-      size: 11px;
-      weight: 400;
+  border-top: 1px solid var(--bg-grey2);
+  padding: 3em 2em;
+  .inner {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+  }
+  dl {
+    dt {
+      font: {
+        size: 1em;
+        weight: 600;
+      }
+      margin-bottom: 1em;
     }
-    text-transform: uppercase;
+    dd {
+      color: var(--black200);
+      display: flex;
+      align-items: center;
+      font: {
+        size: 0.75em;
+        weight: 400;
+      }
+      strong {
+        white-space: nowrap;
+        margin-right: 1em;
+      }
+      span {
+        color: var(--black300);
+      }
+      + dd {
+        margin-top: 0.625em;
+        &:last-child {
+          margin-top: 0.875em;
+        }
+      }
+      a {
+        color: var(--black);
+      }
+    }
+    &:nth-child(2) {
+      margin-left: auto;
+    }
   }
 }
+// Menu **********
 #menu {
   position: fixed;
   left: 0;
@@ -175,40 +213,108 @@
 }
 
 // Contents **********
+#intro,
+#review,
+#press {
+  .inner {
+    width: 100%;
+    max-width: 1200px;
+  }
+}
+
 #intro {
   height: 100vh;
   display: flex;
   align-items: center;
-  background: var(--bg-grey2);
-  padding: 0 40px;
+  background: #edf4ff;
+  padding: 2em;
+  .lottie {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 80px;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
   .inner {
     margin: 0 auto;
-    flex: 1;
-    max-width: 1200px;
-    h2 {
-      margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .animate-text {
+    position: relative;
+    overflow: hidden;
+    width: fit-content;
+    z-index: 1;
+    .text {
+      color: var(--black);
+      opacity: 0;
       font: {
-        size: 14px;
-        weight: 900;
+        size: 3em;
+        weight: 700;
       }
     }
-    h3 {
-      .ani-text {
-        display: block;
-        line-height: 1.4em;
-        font: {
-          size: 2em;
-          weight: 700;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+    &:nth-child(1) {
+      &:before {
+        background: #47b5ff;
+      }
+    }
+    &:nth-child(2) {
+      &:before {
+        background: #1363df;
+      }
+    }
+    &:nth-child(3) {
+      &:before {
+        background: #06283d;
+      }
+    }
+    + .animate-text {
+      margin-top: 20px;
+    }
+  }
+  &.start-animate {
+    .animate-text {
+      .text {
+        opacity: 1;
+      }
+      &:before {
+        width: 100%;
+        left: 105%;
+      }
+      &:nth-child(1) {
+        .text {
+          transition: opacity 0.5s ease 1s;
+        }
+        &:before {
+          transition: width 0.5s 0s, left 0.5s ease 1s;
         }
       }
-      em {
-        background: linear-gradient(to right, var(--point200), var(--point100));
-        font-style: normal;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font: {
-          size: 1em;
-          weight: 700;
+      &:nth-child(2) {
+        .text {
+          transition: opacity 0.5s ease 1.5s;
+        }
+        &:before {
+          transition: width 0.5s 0.5s, left 0.5s ease 1.5s;
+        }
+      }
+      &:nth-child(3) {
+        .text {
+          transition: opacity 0.5s ease 2s;
+        }
+        &:before {
+          transition: width 0.5s 1s, left 0.5s ease 2s;
         }
       }
     }
@@ -222,8 +328,7 @@
   justify-content: center;
   .inner {
     margin: 0 auto 3em;
-    width: 100%;
-    max-width: 1200px;
+    padding: 0 2em;
     h2 {
       margin-bottom: 20px;
       font: {
@@ -257,8 +362,9 @@
   }
   .review-item {
     border-radius: 10px;
-    background: var(--gray100);
+    background: var(--grey100);
     padding: 2em;
+    max-width: 420px;
     .quote {
       position: relative;
       line-height: 1.5em;
@@ -317,10 +423,94 @@
         }
       }
     }
+    + .review-item {
+      margin-left: 2em;
+    }
   }
 }
 
 // Animation **********
+.page-loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  .page-loading-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: var(--transparent);
+    z-index: 10000;
+    position: relative;
+    transform: translate(-50%, -50%);
+    div {
+      background-color: var(--white);
+      border-radius: 100%;
+      animation-fill-mode: both;
+      position: absolute;
+      left: 0%;
+      top: 0%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      margin: 0;
+      width: 60px;
+      height: 60px;
+      animation: ball-scale-multiple 1s 0s linear infinite;
+      &:nth-child(2) {
+        animation-delay: -0.4s;
+      }
+      &:nth-child(3) {
+        animation-delay: -0.2s;
+      }
+    }
+  }
+
+  .page-loading-left,
+  .page-loading-right {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: var(--point100);
+    transition: all 900ms cubic-bezier(0.77, 0, 0.06, 1.005);
+    transition-delay: 0.4s;
+  }
+  .page-loading-left {
+    top: 0;
+    height: 51%;
+  }
+  .page-loading-right {
+    bottom: 0;
+    height: 51%;
+  }
+  &.loaded {
+    .page-loading-left {
+      transform: translateY(-100%);
+    }
+    .page-loading-right {
+      transform: translateY(100%);
+    }
+  }
+}
+
+// Animation
+@keyframes ball-scale-multiple {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
 @keyframes fadeinUp {
   0% {
     opacity: 0;
@@ -342,13 +532,11 @@
   }
 }
 
-// Media Query **********
-
-// Vendor css
-#review {
-  .review-contents {
-    .owl-item {
-      max-width: 420px;
-    }
+// Vendor Control
+.infiniteslide_wrap {
+  + .infiniteslide_wrap {
+    margin-top: 2em;
   }
 }
+
+// Media Query **********

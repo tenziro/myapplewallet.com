@@ -4,16 +4,16 @@
   --white: #fff;
   --white-rgb: 255, 255, 255;
   --black-rgb: 0, 0, 0;
-  --black000: #000;
+  --black: #000;
   --black200: #222;
   --black300: #333;
   --black600: #666;
   --black700: #777;
   --black800: #888;
   --black900: #999;
-  --gray100: #f8f8f8;
-  --gray200: #eaeaea;
-  --gray300: #ccc;
+  --grey100: #f8f8f8;
+  --grey200: #eaeaea;
+  --grey300: #ccc;
   --bg-grey1: #f8f8f8;
   --bg-grey2: #eaeaea;
   --point100: #5f58d3;
@@ -235,7 +235,7 @@ small {
 }
 
 strong {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 sub,
@@ -279,4 +279,8 @@ input[type="button"] {
   content: " ";
   display: block;
   clear: both;
+}
+
+.underline {
+  text-underline-offset: 4px;
 }
