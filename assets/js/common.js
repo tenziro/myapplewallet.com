@@ -37,40 +37,40 @@ window.addEventListener("scroll", (event) => {
 
 // 페이지 로딩 컨트롤
 $(document).ready(function() {
-  let loadingWrap = document.querySelector(".page-loading");
-  let loadingIcon = document.querySelector(".page-loading-icon");
+  let loadingWrap = $(".page-loading");
+  let loadingIcon = $(".page-loading-icon");
   $.ajax({
     type: "GET",
     url: "main.html",
     dataType: "html",
     async: true,
     error: function() {
-      loadingWrap.style.display = "block";
+      loadingWrap.show();
     },
     success: function(result) {
-      $(".page-loading").queue(function() {
-        setTimeout(function() {
-          loadingIcon.style.display = "none";
-        }, 400);
-        $(this).stop().animate({
-          scrollTop: 0
-        }, {
-          step: function() {
-            this.classList.add('loaded');
-          },
-          duration: 1300,
-          complete: function() {
-            this.style.display = "none";
-          }
-        });
-      });
       $("#page").html(result);
     },
     complete: function() {
-      // Animation 텍스트
-      setTimeout(function() {
-        document.querySelector("#intro").classList.add("start-animate");
-      }, 1000);
+      // lottie animation
+      let lottiePyro = bodymovin.loadAnimation({
+        container: document.querySelector('.lottie'),
+        path: '/assets/js/vendor/lottie.json',
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        rendererSettings: {
+          progressiveLoad: false,
+          hideOnTransparent: true
+        }
+      });
+      loadingIcon.delay(1000).fadeOut(500, function() {
+        $(".page-loading").addClass('loaded').delay(1300).fadeOut(0, function() {
+          $("#intro").addClass("start-animate");
+          setTimeout(function() {
+            lottiePyro.play();
+          }, 3000);
+        });
+      });
       // review 컨텐츠 1
       $(".review-contents.first").infiniteslide({
         'speed': 20,
@@ -87,21 +87,6 @@ $(document).ready(function() {
         'responsive': false,
         'clone': 1
       });
-      // lottie animation
-      let lottiePyro = bodymovin.loadAnimation({
-        container: document.querySelector('.lottie'),
-        path: '/assets/js/vendor/lottie.json',
-        renderer: 'svg',
-        loop: false,
-        autoplay: false,
-        rendererSettings: {
-          progressiveLoad: false,
-          hideOnTransparent: true
-        }
-      });
-      setTimeout(function() {
-        lottiePyro.stop();
-      }, 4000);
     }
   });
 });

@@ -243,7 +243,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 80px;
+    margin-top: 70px;
     transform: translate(-50%, -50%);
     z-index: 0;
   }
@@ -341,11 +341,14 @@
   .inner {
     margin: 0 auto 3em;
     padding: 0 2em;
+    text-align: center;
     h2 {
       margin-bottom: 20px;
+      text-transform: uppercase;
+      color: var(--blue100);
       font: {
-        size: 14px;
-        weight: 900;
+        size: 1em;
+        weight: 700;
       }
     }
     h3 {
@@ -353,12 +356,12 @@
         display: block;
         line-height: 1.4em;
         font: {
-          size: 2em;
+          size: 2.5em;
           weight: 700;
         }
       }
       em {
-        background: linear-gradient(to right, var(--point200), var(--point100));
+        background: linear-gradient(to right, var(--blue100), var(--blue200));
         font-style: normal;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
