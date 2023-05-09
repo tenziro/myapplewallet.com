@@ -1,7 +1,10 @@
 // 전체 메뉴 열고 닫기
 function menuControl() {
   let menu = document.querySelector("#menu");
+  let menuOpenBtn = document.querySelector(".btn-menu");
   let body = document.body;
+  let header = document.querySelector("#header");
+  menuOpenBtn.classList.toggle("actived");
   menu.classList.toggle("actived");
   body.classList.toggle("disabled-scroll");
 }
@@ -17,28 +20,11 @@ window.addEventListener("scroll", (event) => {
   }
 });
 
-// (function() {
-//   let httpRequest = new XMLHttpRequest();
-//
-//   httpRequest.open('GET', 'main.html');
-//   httpRequest.send();
-//
-//   httpRequest.onload = function() {
-//     document.querySelector('#page').innerHTML = httpRequest.response;
-//   }
-//   httpRequest.onreadystatechange = function() {
-//     if (httpRequest.status === 200) {
-//       // 성공
-//     } else {
-//       // 실패
-//     }
-//   };
-// })();
-
 // 페이지 로딩 컨트롤
 $(document).ready(function() {
-  let loadingWrap = $(".page-loading");
-  let loadingIcon = $(".page-loading-icon");
+  const loadingWrap = $(".page-loading");
+  const loadingIcon = $(".page-loading-icon");
+
   $.ajax({
     type: "GET",
     url: "main.html",
@@ -52,7 +38,7 @@ $(document).ready(function() {
     },
     complete: function() {
       // lottie animation
-      let lottiePyro = bodymovin.loadAnimation({
+      const lottiePyro = bodymovin.loadAnimation({
         container: document.querySelector('.lottie'),
         path: '/assets/js/vendor/lottie.json',
         renderer: 'svg',
@@ -63,6 +49,7 @@ $(document).ready(function() {
           hideOnTransparent: true
         }
       });
+
       loadingIcon.delay(1000).fadeOut(500, function() {
         $(".page-loading").addClass('loaded').delay(1300).fadeOut(0, function() {
           $("#intro").addClass("start-animate");
